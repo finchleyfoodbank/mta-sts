@@ -1,12 +1,14 @@
 // ==UserScript==
 // @name        ARCCS Field Highligher
-// @namespace   Violentmonkey Scripts
-// @icon
-// @version     1.0.0
+// @namespace   https://finchleyfoodbank.org.uk/
+// REMINDER: Increment this version number every time you update the file!
+// @version     1.1.0
 // @match       https://groundworkgis.zohocreator.eu/portal/barnet-foodhub
 // @grant       none
-// @author      -
-// @description
+// @author      FFB
+// @description  For ease of filling in ARCSS registration form
+// @downloadURL  https://mta-sts.finchleyfoodbank.org.uk/ARCCS-highlighter.js
+// @updateURL    https://mta-sts.finchleyfoodbank.org.uk/ARCCS-highlighter.js
 // ==/UserScript==
 
 (function() {
