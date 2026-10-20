@@ -3,10 +3,8 @@
 // @namespace   Violentmonkey Scripts
 // @icon
 // @version     1.0.0
-//
 // @match       https://groundworkgis.zohocreator.eu/portal/barnet-foodhub
 // @grant       none
-//
 // @author      -
 // @description
 // ==/UserScript==
@@ -14,7 +12,7 @@
 (function() {
     'use strict';
 
-    // 1. Define target fields (use '*' as a wildcard)
+    // Define target fields here (use '*' as a wildcard)
     const TARGET_FIELD_NAMES = [
         "Special Care",
         "Name",
@@ -46,7 +44,7 @@
         return new RegExp(`^${escaped}$`, 'i'); // 'i' makes it case-insensitive
     });
 
-    // 2. Inject CSS for the highlight styling
+    // Inject CSS for the highlight styling
     const style = document.createElement('style');
     style.textContent = `
         .tm-highlight-label {
