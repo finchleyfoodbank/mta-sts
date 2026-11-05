@@ -2,7 +2,7 @@
 // @name        ARCCS Field Highligher
 // @namespace   https://finchleyfoodbank.org.uk/
 // REMINDER: Increment this version number every time you update the file!
-// @version     1.3.1
+// @version     1.3.2
 // @match       https://groundworkgis.zohocreator.eu/portal/barnet-foodhub
 // @grant       none
 // @author      FFB
@@ -19,6 +19,7 @@
         // "I consent to my name*", 
         "Special Care",
         "Name*",
+        "Do you need language translation*",
         "Customer type*",
         "Email",
         "Phone",
