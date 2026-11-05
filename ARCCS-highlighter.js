@@ -2,28 +2,29 @@
 // @name        ARCCS Field Highligher
 // @namespace   https://finchleyfoodbank.org.uk/
 // REMINDER: Increment this version number every time you update the file!
-// @version     1.2.0
+// @version     1.3.0
 // @match       https://groundworkgis.zohocreator.eu/portal/barnet-foodhub
 // @grant       none
 // @author      FFB
-// @description  For ease of filling in ARCSS registration form
-// @downloadURL  https://mta-sts.finchleyfoodbank.org.uk/ARCCS-highlighter.js
-// @updateURL    https://mta-sts.finchleyfoodbank.org.uk/ARCCS-highlighter.js
+// @description For ease of filling in ARCSS registration form
+// @downloadURL https://mta-sts.finchleyfoodbank.org.uk/ARCCS-highlighter.js
+// @updateURL   https://mta-sts.finchleyfoodbank.org.uk/ARCCS-highlighter.js
 // ==/UserScript==
 
 (function() {
     'use strict';
 
-    // Define target fields here (use '*' as a wildcard)
+    // Define target fields here (use '*' as a wildcard, remove space before asterisk to match smoothly)
     const TARGET_FIELD_NAMES = [
+        // "I consent to my name*", 
         "Special Care",
-        "Name",
-        "Customer type",
+        "Name*",
+        "Customer type*",
         "Email",
         "Phone",
         "Postcode",
         "Street Address",
-        "What is your ethnicity *",
+        "What is your ethnicity*",
         "What kind of support or advice would help you?",
         "Who will this food support?",
         "Do you have any other dietary requirements?",
@@ -32,10 +33,11 @@
         "How many children are in your family?",
         "Appointment Day",
         "Appointment Slot",
-        "Date of Birth *",
-        "Proof of Address *",
+        "Date of Birth*",
+        "Proof of Address*",
         "Survey Recorder",
-        "Notes"
+        "Notes",
+        "I have read and agreed*"
     ];
 
     // Convert wildcards ('*') to Regular Expressions
@@ -67,7 +69,8 @@
     document.head.appendChild(style);
 
     function highlightTargetLabels() {
-        const labels = document.querySelectorAll('span.zc-label-text');
+        // Query both standard labels (span.zc-label-text) and decision-box label elements (label.decision-box-label)
+        const labels = document.querySelectorAll('span.zc-label-text, label.decision-box-label, label[zc-style-target="label-text"]');
 
         labels.forEach(label => {
             const textContent = label.textContent.trim();
@@ -82,16 +85,13 @@
     // Helper to calculate nearest future weekday + 7 weeks (49 days)
     function getFutureDate(targetDayOfWeek, weeksToAdd = 7) {
         const d = new Date();
-        const currentDay = d.getDay(); // 0 = Sun, 1 = Mon, 2 = Tue, ..., 6 = Sat
+        const currentDay = d.getDay();
 
-        // Find days until next target weekday (if today is that day, advance 7 days to nearest future)
         let daysUntil = (targetDayOfWeek - currentDay + 7) % 7;
         if (daysUntil === 0) daysUntil = 7;
 
-        // Add 7 weeks (7 * 7 = 49 days) onto the nearest target day
         d.setDate(d.getDate() + daysUntil + (weeksToAdd * 7));
 
-        // Format ordinal date: e.g. "15th December"
         const day = d.getDate();
         const month = d.toLocaleString('en-US', { month: 'long' });
 
@@ -107,7 +107,6 @@
         const container = document.querySelector('div[zc-field-container="Appointment_Slot"] .form-field');
 
         if (container && !container.querySelector('.tm-custom-note')) {
-            // Target 2 for Tuesday, 6 for Saturday + 7 weeks
             const tuesdayDate = getFutureDate(2, 7);
             const saturdayDate = getFutureDate(6, 7);
 
