@@ -35,6 +35,7 @@
         "Appointment Slot",
         "Date of Birth*",
         "Proof of Address*",
+        "Are you able to cook*",
         "Survey Recorder",
         "Notes",
         "I have read and agreed*"
